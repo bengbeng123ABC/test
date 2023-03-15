@@ -1,0 +1,107 @@
+import xgboost as xgb 
+import pandas as pd 
+from sklearn.model_selection import train_test_split 
+from sklearn.model_selection import GridSearchCV 
+from sklearn.metrics import roc_auc_score
+from sklearn import svm,datasets
+data = pd.read_csv('shuju0421.csv')
+train_df = data
+Y = train_df.pop('emd_lable2').values  
+# test_df = pd.read_csv('test_modified.csv') 
+# train_df.drop('emd_lable2',axis=1,inplace=True) 
+# train_df1=train_df.drop('pax_name',axis=1)  
+# test_df.drop('ID',axis=1,inplace=True)  
+X= train_df.values  
+X
+array([[0.    , 0.375 , 0.75  , ..., 0.    , 0.    , 0.    ],
+       [0.    , 0.375 , 0.75  , ..., 0.    , 0.    , 0.    ],
+       [0.5   , 0.5625, 0.75  , ..., 0.    , 0.    , 0.    ],
+       ...,
+       [1.    , 0.4375, 0.75  , ..., 0.    , 0.    , 0.    ],
+       [1.    , 0.4375, 0.75  , ..., 0.    , 0.    , 0.    ],
+       [1.    , 0.4375, 0.75  , ..., 0.    , 0.    , 0.    ]])
+Y
+array([0, 0, 0, ..., 0, 0, 0], dtype=int64)
+x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_state=0)
+param_test={'n_estimators':np.arange(120,200,10)}
+dac=xgb.XGBClassifier(learning_rate=0.01,max_depth=5,min_child_weight=1,gamma=0.1,subsample=1.0,colsample_btree=1.0)
+gs=GridSearchCV(dac,param_grid=param_test,scoring='roc_auc',cv=5)
+gs.fit(x_train,y_train)
+print('Best score:%0.3f'% gs.best_score_)
+print('Best parameters set:%s'% gs.best_params_)
+
+param_test={'n_estimators':np.arange(70,90,5)}
+dac=xgb.XGBClassifier(learning_rate = 0.1,
+                         n_estimators=85,         # 树的个数--1000棵树建立xgboost\n",
+                            max_depth=5,               # 树的深度\n",
+    #                         min_child_weight = 0.1,      # 叶子节点最小权重\n",
+                            gamma=0,                  # 惩罚项中叶子结点个数前的参数\n",
+                            subsample=0.8,             # 随机选择80%样本建立决策树\n",
+    #                         colsample_btree=0.8,       # 随机选择80%特征建立决策树\n",
+                            objective='binary:logistic',# 指定损失函数\n",
+                            scale_pos_weight = 16,
+                            max_delta_step = 2,
+                           eval_metric = 'logloss',)
+gs=GridSearchCV(dac,param_grid=param_test,scoring='accuracy',cv=5)
+gs.fit(x_train,y_train)
+print('Best score:%0.3f'% gs.best_score_)
+print('Best parameters set:%s'% gs.best_params_)
+
+Best score:0.668
+Best parameters set:{'n_estimators': 85}
+param_test={
+    'learning_rate':np.arange(0.01,0.05,0.01),'n_estimators':np.arange(70,90,5)}
+dac=xgb.XGBClassifier(learning_rate = 0.04
+                         n_estimators=85,         # 树的个数--1000棵树建立xgboost\n",
+                            max_depth=5,               # 树的深度\n",
+    #                         min_child_weight = 0.1,      # 叶子节点最小权重\n",
+                            gamma=0,                  # 惩罚项中叶子结点个数前的参数\n",
+                            subsample=0.8,             # 随机选择80%样本建立决策树\n",
+    #                         colsample_btree=0.8,       # 随机选择80%特征建立决策树\n",
+                            objective='binary:logistic',# 指定损失函数\n",
+                            scale_pos_weight = 16,
+                            max_delta_step = 2,
+                           eval_metric = 'logloss',)
+gs=GridSearchCV(dac,param_grid=param_test,scoring='accuracy',cv=5)
+gs.fit(x_train,y_train)
+print('Best score:%0.3f'% gs.best_score_)
+print('Best parameters set:%s'% gs.best_params_)
+
+Best score:0.586
+Best parameters set:{'learning_rate': 0.04, 'n_estimators': 85}
+param_test={'max_depth': np.arange(3,5,1),'min_child_weight': np.arange(0.1,0.5,0.1)}
+mode1=xgb.XGBClassifier(learning_rate = 0.1,
+                         n_estimators=85,         # 树的个数--1000棵树建立xgboost\n",
+                            max_depth=5,               # 树的深度\n",
+    #                         min_child_weight = 0.1,      # 叶子节点最小权重\n",
+                            gamma=0,                  # 惩罚项中叶子结点个数前的参数\n",
+                            subsample=0.8,             # 随机选择80%样本建立决策树\n",
+    #                         colsample_btree=0.8,       # 随机选择80%特征建立决策树\n",
+                            objective='binary:logistic',# 指定损失函数\n",
+                            scale_pos_weight = 16,
+                            max_delta_step = 2,
+                           eval_metric = 'logloss',)
+gs=GridSearchCV(mode1,param_grid=param_test, scoring='neg_root_mean_squared_error', cv=5)
+gs.fit(x_train,y_train)
+print("Best score:%0.3f"% gs. best_score_)
+print("Best parameters set:%s"% gs. best_params_)
+
+Best score:-0.252
+Best parameters set:{'colsubsample_bytree': 0.5, 'subsample': 0.5}
+param_test={'max_delta_step': np.arange(3,6,1),'reg_lambda': np.arange(0.01,0.1,0.01)}
+mode1=xgb.XGBClassifier(learning_rate = 0.25,
+                        n_estimators=500,         # 树的个数--1000棵树建立xgboost
+                        max_depth=3,               # 树的深度
+                        min_child_weight = 0.01,      # 叶子节点最小权重
+                        gamma=0.01,                  # 惩罚项中叶子结点个数前的参数
+                        subsample=0.8,             # 随机选择80%样本建立决策树
+                        colsample_btree=0.8,       # 随机选择80%特征建立决策树
+                        objective='binary:logistic',# 指定损失函数
+                        scale_pos_weight = 16,
+                        max_delta_step = 5,
+                       eval_metric = 'logloss',
+                              reg_lambda=0.1,)
+gs=GridSearchCV(mode1,param_grid=param_test, scoring='neg_root_mean_squared_error', cv=5)
+gs.fit(x_train,y_train)
+print("Best score:%0.3f"% gs.best_score_)
+print("Best parameters set:%s"% gs.best_params_)
