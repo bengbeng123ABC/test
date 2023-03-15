@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <link rel="stylesheet" href="card.css">
+    <link rel="stylesheet" href="detail.css">
+    <link rel="stylesheet" href="./font_3944678_3978r2qx4p5/iconfont.css">
+    <title>项目概述</title>
+</head>
+<body>
+    <div class="container">
+        <div class="left-box">
+            <ul>
+                <li class="item" >
+                    <i class="iconfont icon-a-airplane"></i><a href="test.html"><span>项目概括</span></a>
+                 </li>
+                 <li class="item">
+                    <i class="iconfont icon-a-crown"></i><a href="XGBosts.html"><span>XGBoost</span></a>
+                 </li>
+                 <li class="item">
+                     <i class="iconfont icon-a-honor"></i><a href="data.html"><span>数据处理</span></a>
+                 </li>
+                 <li class="item">
+                    <i class="iconfont icon-a-love"></i><a href="jiangwei.html"><span>特征降维</span><a>
+                 </li>
+                 <li class="item">
+                     <i class="iconfont icon-a-shiny"></i><a href="model.html"><span>模型训练</span></a>
+                 </li>
+                 <hr>
+                 <li class="item">
+                    <i class="iconfont icon-a-smile"></i><a href="Welcome.html"><span>识别系统</span></a>
+                 </li>
+            </ul>
+        </div>
+        <div class="right-box">
+            <div class="top">
+                <span class="current-tag">数据处理</span>
+            </div>
+            <div class="middle">
+                <div class="container">
+                    <input type="radio" name="select" id="slide_1" checked hidden>
+                    <input type="radio" name="select" id="slide_2" hidden>
+                    <input type="radio" name="select" id="slide_3" hidden>
+            
+                    <div class="slider">
+                        <label for="slide_1" class="slide slide_1"></label>
+                        <label for="slide_2" class="slide slide-2"></label>
+                        <label for="slide_3" class="slide slide-3"></label>
+                    </div>
+                    <div class="card card-1">
+                        <div class="content">
+                            <div class="title"></div>
+                            <div class="text">  ①采用众数(mode)缺失值填充即用统计数据中明显集中趋势点数值进行补充。<br></br>
+
+                                ②异常值运用箱线图四分法进行处理，即箱线图四分位距对异常值进行检测并替换。<br></br>
+                    
+                                ③归一化处理利用scikit-learn中Min Max Scale,通过估计器分别放缩和转换数据成固定值。
+                    
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            </div>
+            <div class="handler"></div>
+        </div>
+    </div>
+    <script src="detail.js"></script>
+</body>
+</html>
