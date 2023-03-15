@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <link rel="stylesheet" href="card.css">
+    <link rel="stylesheet" href="detail.css">
+    <link rel="stylesheet" href="./font_3944678_3978r2qx4p5/iconfont.css">
+    <title>项目概述</title>
+</head>
+<body>
+    <div class="container">
+        <div class="left-box">
+            <ul>
+                <li class="item" >
+                    <i class="iconfont icon-a-airplane"></i><a href="test.html"><span>项目概括</span></a>
+                 </li>
+                 <li class="item">
+                    <i class="iconfont icon-a-crown"></i><a href="XGBosts.html"><span>XGBo0st</span></a>
+                 </li>
+                 <li class="item">
+                     <i class="iconfont icon-a-honor"></i><a href="data.html"><span>数据处理</span></a>
+                 </li>
+                 <li class="item">
+                    <i class="iconfont icon-a-love"></i><a href="jiangwei.html"><span>特征降维</span><a>
+                 </li>
+                 <li class="item">
+                     <i class="iconfont icon-a-shiny"></i><a href="model.html"><span>模型训练</span></a>
+                 </li>
+                 <hr>
+                 <li class="item">
+                    <i class="iconfont icon-a-smile"></i><a href="Welcome.html"><span>识别系统</span></a>
+                 </li>
+            </ul>
+        </div>
+        <div class="right-box">
+            <div class="top">
+                <span class="current-tag">XGBoost</span>
+            </div>
+            <div class="middle">
+                <div class="container">
+                    <input type="radio" name="select" id="slide_1" checked hidden>
+                    <input type="radio" name="select" id="slide_2" hidden>
+                    <input type="radio" name="select" id="slide_3" hidden>
+            
+                    <div class="slider">
+                        <label for="slide_1" class="slide slide_1"></label>
+                        <label for="slide_2" class="slide slide-2"></label>
+                        <label for="slide_3" class="slide slide-3"></label>
+                    </div>
+                    <div class="card card-1">
+                        <div class="content">
+                            <div class="title">XGBoost概述</div>
+                            <div class="text">XGBoost[1]是2014年2月诞生的专注于梯度提升算法的机器学习函数库，此函数库因其优良的学习效果以及高效的训练速度而获得广泛的关注。XGBoost实现的是一种通用的Tree Boosting算法，此算法的一个代表为梯度提升决策树（Gradient Boosting Decision Tree, GBDT），又名MART(Multiple Additive Regression Tree)。
+                                GBDT的原理是，首先使用训练集和样本真值（即标准答案）训练一棵树，然后使用这棵树预测训练集，得到每个样本的预测值，由于预测值与真值存在偏差，所以二者相减可以得到“残差”。接下来训练第二棵树，此时不再使用真值，而是使用残差作为标准答案。两棵树训练完成后，可以再次得到每个样本的残差，然后进一步训练第三棵树，以此类推。树的总棵数可以人为指定，也可以监控某些指标（例如验证集上的误差）来停止训练。在预测新样本时，每棵树都会有一个输出值，将这些输出值相加，即得到样本最终的预测值。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-2">
+                        <div class="content">
+                            <div class="title">XGBoost应用</div>
+                            <div class="text">系统使用了基于sklearn的数据挖掘库来实现基于 GBDT 的决策树XGBoost算法模型。<br></br>
+                                1.xgboost通过weight（特征在所有树中被用作分割样本的特征的次数）获取特征重要性。<br></br>
+2.设置阈值，借助衡量分类器优劣的指标，从特征重要性中选择特征。<br></br>
+3.利用plot_importance画出各个特征的重要性排序。
+
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            </div>
+            <div class="handler"></div>
+        </div>
+    <script src="detail.js"></script>
+</body>
+</html>
